@@ -1,0 +1,55 @@
+### INPUT
+expname = 2d
+rootdir = /data/hlchen/output/gnesf/  # REPLACE THIS with YOUR PATH.
+datadir = /data/hlchen/data/  # REPLACE THIS with YOUR PATH.
+# datadir = /ssd/hlchen/  # REPLACE THIS with YOUR PATH.
+render_stride = 1
+enable_rgb = True
+enable_semantic = True
+enable_2dsem_seg = True
+# distributed = True
+
+### MODEL
+seg2d_model_cfg = seg2d/configs/scannet/semantic-segmentation/swin/maskformer2_swin_large_IN21k_384_bs16_160k_res640.yaml
+seg2d_model_path = /data/hlchen/output/mask2former/scannet_swin_large_in21k_160k_new/model_final.pth # REPLACE THIS with YOUR PATH.
+
+## dataset
+train_dataset = scannet
+dataset_weights = [1]
+eval_dataset = scannet_val
+sample_step = 10
+image_size = [480, 640]
+num_cls = 20
+crop = 0 # 0 6
+pad = 2 # 2 0
+
+### TRAINING
+N_rand = 500
+n_iters = 150000
+lrate_feature = 0.001
+lrate_mlp = 0.0005
+lrate_decay_factor = 0.5
+lrate_decay_steps = 4000
+wgt_sem = 1
+wgt_sem2d = 0
+fs_weight = 10.0
+wgt_depth = 0
+trunc_weight = 6000.0
+ignore_label = -1
+
+### TESTING
+chunk_size = 2000
+llffhold = 20 # 8
+
+### RENDERING
+N_importance = 64
+N_samples = 64
+inv_uniform = True
+white_bkgd = False
+
+### CONSOLE AND TENSORBOARD
+i_img = 2000
+i_print = 1000
+i_weights = 5000
+
+

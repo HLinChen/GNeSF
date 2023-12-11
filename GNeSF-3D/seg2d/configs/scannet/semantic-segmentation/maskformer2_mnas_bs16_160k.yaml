@@ -1,0 +1,30 @@
+_BASE_: maskformer2_R50_bs16_160k.yaml
+MODEL:
+  BACKBONE:
+    NAME: "D2MnasMulti"
+  WEIGHTS: ""
+  # WEIGHTS: "https://download.pytorch.org/models/mnasnet1.0_top1_73.512-f206786ef8.pth"
+  MNAS:
+    ALPHA: 1
+    OUT_FEATURES: ["res2", "res3", "res4", "res5"]
+  SEM_SEG_HEAD:
+    NAME: "MaskFormerHead"
+    IGNORE_VALUE: 255
+    NUM_CLASSES: 20
+    LOSS_WEIGHT: 1.0
+    CONVS_DIM: 128 # 256 128
+    MASK_DIM: 32 # 256
+    # pixel decoder
+    IN_FEATURES: ["res2", "res3", "res4", "res5"]
+    DEFORMABLE_TRANSFORMER_ENCODER_IN_FEATURES: ["res3", "res4", "res5"]
+    COMMON_STRIDE: 4
+    TRANSFORMER_ENC_LAYERS: 6
+  MASK_FORMER:
+    HIDDEN_DIM: 256
+    NUM_OBJECT_QUERIES: 50 # 100
+    NHEADS: 8
+    DROPOUT: 0.0
+    DIM_FEEDFORWARD: 1024 # 2048 1024
+    ENC_LAYERS: 0
+    SIZE_DIVISIBILITY: 32
+    DEC_LAYERS: 10  # 9 decoder layers, add one for the loss on learnable query

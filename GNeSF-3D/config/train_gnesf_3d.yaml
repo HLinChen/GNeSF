@@ -1,0 +1,62 @@
+DATASET: 'scannet'
+BATCH_SIZE: 2
+SAVE_SCENE_MESH: True
+SAVE_FREQ: 1
+PRINT_FREQ: 500
+MODE: 'train'
+LOGDIR: '/data/hlchen/output/gnesf/3d_official'
+PRETRAIN: '/data/hlchen/output/gnesf/official/model_000047.ckpt'     # change to your own pretrain path
+
+TRAIN:
+  PATH: '/ssd/hlchen/scannet/'                                        # change to your own dataset path
+  EPOCHS: 1
+  EPOCH_PHASE1: 20
+  N_VIEWS: 9
+  LR: 1e-3
+  N_WORKERS: 4
+  LREPOCHS: '12,24,48:2'
+
+TEST:
+  PATH: '/ssd/hlchen/scannet/'                                        # change to your own dataset path
+  N_VIEWS: 9
+  N_WORKERS: 16
+
+MODEL:
+  N_LAYER: 3
+  N_VOX: [96, 96, 96] # local/partial
+  VOXEL_SIZE: 0.04
+  TRAIN_NUM_SAMPLE: [4096, 16384, 65536]
+  TEST_NUM_SAMPLE: [4096, 16384, 65536]
+  NUM_CLS: 20
+  ENABLE_MESH_GT: False # True False
+
+  BACKBONE2D:
+    ARC: 'fpn-mnas-1'
+
+  SEMSEG2D:
+    ARC: 'm2former'
+    CFG_PATH: 'seg2d/configs/scannet/semantic-segmentation/swin/maskformer2_swin_large_IN21k_384_bs16_160k_res640.yaml'
+    PRETRAIN_PATH: '/data/hlchen/output/mask2former/scannet_swin_large_in21k_160k_new/model_final.pth'  # change to your own pretrain path
+
+  FUSION:
+    HIDDEN_DIM: 64
+    AVERAGE: False
+
+    FUSION_ON: True
+    FULL: True
+
+  LW: [1.0, 0.8, 0.64, 1, 1]
+
+  ENABLE_RENDER: True
+  FREEZE_2D: True
+  FREEZE_3DBACKBONE: True
+  FREEZE_3DHEAD: True
+  NERF:
+    ENABLE_RGB: True
+    ENABLE_SEM: True
+    SAMPLE:
+      N_RAYS: 512
+      NUM_TRG: 1
+      N_SAMPLES: 64
+      N_IMPORTANCE: 64
+      RENDER_STRIDE: 1

@@ -1,0 +1,21 @@
+name: gnesf
+channels:
+  # You can use the TUNA mirror to speed up the installation if you are in mainland China.
+  # - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch
+  - pytorch
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8.13
+  - pytorch=1.12.0
+  - torchvision=0.13.0
+  - cudatoolkit=11.3
+  - ipython
+  - tqdm
+  - numba
+  - sparsehash  # dependency for torchsparse
+  - pip
+  - pip:
+    - -r requirements.txt
+    - git+https://github.com/mit-han-lab/torchsparse.git@v2.0.0
+    - git+https://github.com/facebookresearch/detectron2.git
