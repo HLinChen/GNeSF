@@ -51,6 +51,8 @@ This script also generates the ground truth TSDFs using TSDF Fusion.
 <details>
   <summary>[Data preparation script]</summary>
 
+We also compress all camera information into 'cam_info_all.pth'. You can download it from the [link](https://drive.google.com/file/d/1ia737h8ELF5OMEjiguN6ty_nHfuueIq_/view?usp=drive_link). And then put it under the path to scannet.
+
 ```bash
 cd GNeSF-3D
 # Change PATH_TO_SCANNET and OUTPUT_PATH accordingly.
