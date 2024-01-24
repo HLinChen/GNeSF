@@ -4,7 +4,7 @@
 <br/>
 
 > GNeSF: Generalizable Neural Semantic Fields
-> [Hanlin Chen](https://hlinchen.github.io/hlchen/), [Chen Li](https://chaneyddtt.github.io/), [Mengqi Guo](https://scholar.google.com/citations?user=Qa4BlOoAAAAJ&hl=en), [Zhiwen Yan](https://jokeryan.github.io/about/), [Zhiwen Yan](https://www.comp.nus.edu.sg/~leegh/)  
+> [Hanlin Chen](https://hlinchen.github.io/hlchen/), [Chen Li](https://chaneyddtt.github.io/), [Mengqi Guo](https://scholar.google.com/citations?user=Qa4BlOoAAAAJ&hl=en), [Zhiwen Yan](https://jokeryan.github.io/about/), [Gim Hee Lee](https://www.comp.nus.edu.sg/~leegh/)  
 > NeurIPS 2023
 
 ## How to Use
